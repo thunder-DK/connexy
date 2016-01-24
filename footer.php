@@ -16,19 +16,6 @@
                 </table>
                 <p id="footer_companyname">Connexy - 就活生と企業をつなぐWebサイト</p>
             </div>
-
-                <!--
-                <ul>
-                    <li>このサイトについて</li>
-                    <li>利用規約</li>
-                    <li>個人情報の取り扱いについて</li>
-                    <li>問題のある投稿を報告</li>
-                </ul>
-                
-                <p id="footer_companyname">Connexy - 就活生と企業をつなぐWebサイト</p>
-            </div>
-            -->
         </div>
-
     </body>
 </html>

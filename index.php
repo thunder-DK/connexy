@@ -16,7 +16,7 @@
         <script type="text/javascript" src="//code.jquery.com/jquery-1.10.1.min.js"></script>
         <!-- <script type="text/javascript" src="./js/jquery-1.2.6.min.js"></script> -->
         <script type="text/javascript" src="./js/bootstrap.min.js"></script>
-        <link rel="shortcut icon" href="./images/favicon.ico">
+        <link rel="shortcut icon" href="./favicon.ico">
 
         <!--
         <script type="text/javascript">

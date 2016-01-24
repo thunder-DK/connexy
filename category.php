@@ -1,14 +1,5 @@
 <?php
-    /*
-    $pdo = new PDO("mysql:host=localhost;dbname=news_academy;charset=utf8", "root", "");
-    $sql = "SELECT top_image_path, contents_title FROM category_contents_top JOIN contents_detail ON category_contents_top.contents_id = contents_detail.contents_id";
-    //var_dump($sql);
-    $stmt = $pdo->prepare($sql);
-    $result = $stmt->execute();
-    //var_dump($result);
-    $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    var_dump($results);
-    */
+    include "sidemenu.php";
 ?>
 
 <!DOCTYPE html>
@@ -22,17 +13,14 @@
         <link rel="stylesheet" href="./css/bootstrap.min.css">
         <link rel="stylesheet" href="./css/style.css">
         <script type="text/javascript" src="//code.jquery.com/jquery-1.10.1.min.js"></script>
-        <!--<script type="text/javascript" src="./js/jquery-1.2.6.min.js"></script>-->
         <script type="text/javascript" src="./js/bootstrap.min.js"></script>
+        <link rel="shortcut icon" href="./favicon.ico">
     </head>
 
     <body>
         <script type="text/javascript" src="./js/masonry.pkgd.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script src="./js/bootstrap.min.js"></script>
-
-        <?php //include "header.php" ?>
-        <?php include "sidemenu.php" ?>
         
         <div class="sm_container" style="margin-top: 5%;">
             

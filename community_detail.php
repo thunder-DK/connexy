@@ -1,5 +1,40 @@
 <?php
     include "sidemenu.php";
+
+    if(!isset($_SESSION)){
+        session_start();
+        $loginid = $_SESSION["loginid"];
+        $lname1 = $_SESSION["lname1"];
+        $fname1 = $_SESSION["fname1"];
+    }
+    else{
+        $loginid = $_SESSION["loginid"];
+        $lname1 = $_SESSION["lname1"];
+        $fname1 = $_SESSION["fname1"];
+    }
+
+    $pdo = new PDO("mysql:host=localhost; dbname=Connexy_DB; charset=utf8", "root", "");
+    $sql = "SELECT UserID FROM User_Master WHERE UserLoginID = :n_id";
+    $stmt = $pdo->prepare($sql);
+
+    $stmt->bindValue(':n_id', $loginid, PDO::PARAM_STR);
+    $stmt->execute();
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    foreach($result as $row) {
+        $uid = $row["UserID"];
+    }
+
+    $sql = "SELECT UserProfileImage FROM User_Properties_C WHERE UserLoginID = :n_id";
+    $stmt = $pdo->prepare($sql);
+
+    $stmt->bindValue(':n_id', $loginid, PDO::PARAM_STR);
+    $stmt->execute();
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    foreach($result as $row) {
+        $upflimage = $row["UserProfileImage"];
+    }
 ?>
 
 <!DOCTYPE html>
@@ -17,7 +52,7 @@
         <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
         <script type="text/javascript" src="./js/bootstrap.min.js"></script>
         <script src="http://cdn.mlkcca.com/v2.0.0/milkcocoa.js"></script>
-        <link rel="shortcut icon" href="./images/favicon.ico">
+        <link rel="shortcut icon" href="./favicon.ico">
         
         <style>
             /* balloon common */
@@ -76,12 +111,14 @@
             /* balloon left */
             p.balloon-left {
                 float: left;
-                border-color: #8d8;
+                border-color: #a9a9a9;
+                /*border-color: #8d8;*/
             }
             
             p.balloon-left::before {
                 left: -31px;
-                border-right: 15px solid #8d8;
+                border-right: 15px solid #a9a9a9;
+                /*border-right: 15px solid #8d8;*/
             }
             
             p.balloon-left::after {
@@ -91,9 +128,9 @@
 
             /* balloon right */
             p.balloon-right {
-                min-width: 320px;
+                /*min-width: 320px;
                 max-width: 800px;
-                margin: auto;
+                margin: auto;*/
                 float: right;
                 background-color: #98fb98;
                 border-color: #a9a9a9;
@@ -112,74 +149,33 @@
                 /*border-left: 15px solid #fff;*/
             }
             
-            .text-right{
-                float: right;
+            .text-left{
+                float: left;
+                margin: 40px 0px 0px 10px;
+                font-size: 10px;
             }
             
-            #chat-frame {
-                min-width: 320px;
-                max-width: 800px;
-                margin: auto;
-                padding: 1em 2em;
-                /*background-color: #D8F3F0;*/
+            .text-right{
+                float: right;
+                margin: 40px 10px 0px 0px;
+                font-size: 10px;
             }
-            .chat-talk {
-                overflow: hidden;
-                margin: 0 0 1em 0;
-                padding: 0;
+                        
+            .imageframe {
+                background-color: gainsboro;
+                width: 300px;
+                border-radius: 300px;
+                -webkit-border-radius: 300px;
+                -moz-border-radius: 300px;
             }
-            .chat-talk span {
-              display: block;
-              margin: 0;
-              padding: 0;
-            }
-            .chat-talk .talk-icon {
-              float: left;
-              width: auto;
-            }
-            .chat-talk .talk-content {
-              position: relative;
-              box-sizing: border-box;
-              width: auto;
-              min-height: 50px;
-              border-radius: 10px;
-              background-color: #fff;
-              margin: 0 auto 0 70px;
-              padding: 1em;
-            }
-            .chat-talk .talk-icon img {
-              max-width: 100%;
-              height: auto;
-              vertical-align: bottom;
-              border: 2px solid #fff;
-              border-radius: 50%;
-            }
-            .chat-talk .talk-content:before {
-              position: absolute;
-              top: 15px;
-              left: -20px;
-              display: block;
-              width: 0;
-              height: 0;
-              content: '';
-              border: 10px solid transparent;
-              border-right-color: #FFFFFF;
-            }
-            .chat-talk.mytalk .talk-icon {
-              float: right;
-            }
-            .chat-talk.mytalk .talk-content {
-              margin: 0 70px 0 auto;
-              color: #000;
-              background: #78FF6C;
-            }
-            .chat-talk.mytalk .talk-content:before {
-              right: -20px;
-              left: auto;
-              border-color: transparent;
-              border-left-color: #78FF6C;
-            }
-        
+            
+            .imageframe div{
+                background-color: gainsboro;
+                width: 300px;
+                border-radius: 300px;
+                -webkit-border-radius: 300px;
+                -moz-border-radius: 300px;
+            }        
         </style>
 
         <script>
@@ -189,9 +185,11 @@
                 
                 //2."message"データストアを作成
                 var ds = milkcocoa.dataStore("message");
-                                
+                //var history = milkcocoa.dataStore("message").history();
+                
                 //3."message"データストアからメッセージを取ってくる
                 ds.stream().sort("desc").next(function(err, datas) {
+                //history.sort("asc").on(function(err, datas) {
                     datas.forEach(function(data) {
                         renderMessage(data);
                     });
@@ -199,42 +197,60 @@
 
                 //4."message"データストアのプッシュイベントを監視
                 ds.on("push", function(e) {
+                //history.on("push", function(e) {
                     renderMessage(e);
                 });
 
                 var last_message = "dummy";
                 function renderMessage(message) {
-                    /*
-                    var message_html = '<span class="talk-content">' + escapeHTML(message.value.content) + '</span>';
-                    '<div id="chat-frame">'
-                        '<p class="chat-talk mytalk">'
-                            '<span class="talk-icon">'
-                                '<img src="./images/userprofile/kuroda@yahoo.co.jp/upfl_image.jpg" alt="tartgeticon" width="100px" height="100px"/>'
-                            '</span>'
-                            var message_html = '<span class="talk-content">' + escapeHTML(message.value.content) + '</span>';
-                        '</p>'
-                    '</div>'
-                    <p class="chat-talk mytalk">
-                        <span class="talk-icon">
-                            <img src="" alt="myicon" width="100px" height="100px"/>
-                        </span>
-                        <span class="talk-content">[トーク内容を記載]</span>
-                    </p>
-                    */
-                    
-                    '<div class="balloon-wrapper">'
-                        var message_html = '<p class="balloon-right">' + escapeHTML(message.value.content) + '</p>';                      
-                        //var message_html = '<p class="post-text">' + escapeHTML(message.value.content) + '</p>';
-                        
-                        var date_html = '';
-                        if(message.value.date) {
-                            date_html = '<p class="text-right">'+escapeHTML( new Date(message.value.date).toLocaleString())+'</p>';
-                            //date_html = '<p class="post-date">'+escapeHTML( new Date(message.value.date).toLocaleString())+'</p>';
+                    '<div class="balloon-wrapper">'                    
+                        var url_html = escapeHTML(message.value.iurl);
+                        var id_html = escapeHTML(message.value.uid);
+
+                        // 自分が回答したものは右側に表示される
+                        if(id_html == '<?php print $uid ?>'){
+                            var message_html = '<p class="balloon-right" style="margin-right: 20px;">' + escapeHTML(message.value.content) + '</p>';
+
+                            var date_html = '';
+                            if(message.value.date) {
+                                date_html = '<p class="text-right">'+escapeHTML(new Date(message.value.date).toLocaleString())+'</p>';
+                            }
+
+                            // プロフィール画像を設定していない場合
+                            if('<?php print $upflimage ?>' == ""){
+                                $("#" + last_message).before('<div id="' + message.id + '" class="post" style="height: 100px";>' 
+                                + '<div class="imageframe" style="width:80px; height:80px; float:right; text-align: center; padding: 2.5%; font-size: 10px;">no image</div>' 
+                                + message_html + date_html + '</div>');
+                            }
+
+                            // プロフィール画像を設定している場合
+                            else{
+                                $("#" + last_message).before('<div id="' + message.id + '" class="post" style="height: 100px";>' 
+                                + '<img src="<?php print $upflimage ?>" class="imageframe" style="width:80px; height:80px; float:right;"/>' 
+                                + message_html + date_html + '</div>');
+                            }
                         }
 
-                        '<img src="./images/userprofile/kuroda@yahoo.co.jp/upfl_image.jpg" class="talk-icon" width="100px" height="100px"/>'
-                        $("#"+last_message).before('<div id="'+message.id+'" class="post" style="height: 100px";>' + message_html + date_html +'</div>');
-                        //$("#"+last_message).before('<div id="'+message.id+'" class="post">' + message_html + '</div><br><div>' + date_html +'</div>');
+                        // 自分以外の回答は左に表示される
+                        else{
+                            var message_html = '<p class="balloon-left" style="margin-left: 20px;">' + escapeHTML(message.value.content) + '</p>';
+
+                            var date_html = '';
+                            if(message.value.date) {
+                                date_html = '<p class="text-left">' + escapeHTML(new Date(message.value.date).toLocaleString()) + '</p>';
+                            }
+
+                            if(url_html == ""){
+                                $("#" + last_message).before('<div id="' + message.id + '" class="post" style="height: 100px";>' 
+                                + '<div class="imageframe" style="width:80px; height:80px; float:left; text-align: center; padding: 2.5%; font-size: 10px;">no image</div>' 
+                                + message_html + date_html + '</div>');
+                            }
+                            else{
+                                $("#" + last_message).before('<div id="' + message.id + '" class="post" style="height: 100px";>' 
+                                + '<img src=' + escapeHTML(message.value.iurl) 
+                                + ' class="imageframe" style="width:80px; height:80px; float:left;"/>' + message_html + date_html + '</div>');
+                            }
+                        }
 
                         last_message = message.id;
                     '</div>'
@@ -244,15 +260,19 @@
                     //5."message"データストアにメッセージをプッシュする
                     var content = escapeHTML($("#postarea").val());
                     if (content && content !== "") {
+                        //history.on({
                         ds.push({
                             title: "タイトル",
                             content: content,
+                            iurl: '<?php print $upflimage ?>',
+                            uname: '<?php print $lname1 . " " . $fname1 ?>',
+                            uid: '<?php print $uid ?>',
                             date: new Date().getTime()
                         }, function (e) {});
                     }
                     $("#postarea").val("");
                 }
-                
+
                 $("#postarea").keydown(function (e) {
                     if (e.which == 13){
                         post();
@@ -264,42 +284,18 @@
             //インジェクション対策
             function escapeHTML(val) {
                 return $('<div>').text(val).html();
-                //return val;
             };
         </script>
     </head>
 
     <body>
         <div class="sm_container">
-
-            <div style="margin-left:5%; margin-top:4%;">
+            <div style="margin: 4% 5% 10% 5%;">
                 <div class="header">
-                    <h1 class="logo">CHAT</h1>
+                    <h1 class="logo" style="text-align: center; font-size: 20px; margin-bottom: 40px;">Communityで会話しよう！</h1>
                 </div>
-
                 <div id="messages" class="content">
                     <div id="dummy">
-
-                    <!-- ここから追加 -->
-                    <!--
-                    <div id="chat-frame">
-                        <p class="chat-talk mytalk">
-                            <span class="talk-icon">
-                                <img src="./images/userprofile/kuroda@yahoo.co.jp/upfl_image.jpg" alt="tartgeticon" width="100px" height="100px"/>
-                            </span>
-                            <span class="talk-content"></span>
-                        </p>
-                        <!--
-                        <p class="chat-talk mytalk">
-                            <span class="talk-icon">
-                                <img src="" alt="myicon" width="100px" height="100px"/>
-                            </span>
-                            <span class="talk-content">[トーク内容を記載]</span>
-                        </p>
-                        
-                    </div>
-                    -->
-
                     </div>
                 </div>
             </div>

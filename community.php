@@ -16,7 +16,7 @@
         <link rel="stylesheet" href="./css/style.css">
         <script type="text/javascript" src="//code.jquery.com/jquery-1.10.1.min.js"></script>
         <script type="text/javascript" src="./js/bootstrap.min.js"></script>
-        <link rel="shortcut icon" href="./images/favicon.ico">
+        <link rel="shortcut icon" href="./favicon.ico">
     </head>
     <body>        
         <div class="sm_container" style="margin-top: 5%;">

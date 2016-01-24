@@ -72,8 +72,10 @@ body{
 }
 
 .container{
-    width: 960px;
-    margin: 0 auto;
+    max-width: 1080px;
+    width: 100%;
+    height: 100%;
+    /*margin: 0 auto*/
 }
 
 #header_container{
@@ -211,16 +213,16 @@ body{
     background-color: rebeccapurple;
 }
 
+/* footer.phpに使用 */
 #footer_info{
     float: left;
     width: 100%;
     height: 80px;
-    /*margin: 0 auto;*/
     margin: 20px auto 5px auto;
     /*text-align: center;*/
     font-size: 10px;
-    color: darkgray;
-    background-color: gainsboro;
+    color: white;
+    background-color: #222;
 } 
 
 #footer_info ul{
@@ -251,6 +253,7 @@ body{
     width: 100%;
 }
 
+/* 本サービスでは未使用 */
 #contents_view{
     float: left;
     width: 100%;
@@ -259,27 +262,32 @@ body{
     margin-right: 20px;
 }
 
+/* 本サービスでは未使用 */
 #contents_keyvisual{
     width: 100%;
     text-align: center;
     margin-bottom: 50px;
 }
 
+/* 本サービスでは未使用 */
 #contents_keyvisual img{
     width: 100%;
     height: 200px;
 }
 
+/* 本サービスでは未使用 */
 #contents_showarea{
     margin-left: 100px;
     max-width: 900px;
 }
 
+/* 本サービスでは未使用 */
 #contents_description1, #contents_description2, #contents_description3, #contents_description4, #contents_description5{
     text-align: center;
     margin-bottom: 50px
 }
 
+/* 本サービスでは未使用 */
 #contents_keyvisual p, #contents_description1 p, #contents_description2 p, #contents_description3 p, #contents_description4 p, #contents_description5 p{
     text-align: center;
     margin-bottom: 50px
@@ -289,9 +297,24 @@ body{
     position: fixed;
     bottom: 0;
     width: 90%;
-    height: 8%;
+    height: 10%;
     z-index: 1000;
     /*height: 100px;*/
+}
+
+.input_table{
+    width: 50%;
+    height: 100%;
+    margin: 0 auto;
+}
+
+.input_table tr{
+    height: 50px;
+}
+
+#login_g{
+    width: 600px;
+    margin: 0 auto;
 }
 
 #contents_description1 img, #contents_description2 img, #contents_description3 img, #contents_description4 img, #contents_description5 img{
@@ -310,6 +333,41 @@ body{
 #fieldval{
     margin-bottom: 30px;
 }
+
+.submit-input{
+    float: left;
+    width: 150px;
+    position: relative;
+    top: 40px;
+    bottom: 30px;
+    left: 35%;
+}
+
+.submit-cancel{
+    float: right;
+    width: 150px;
+    position: relative;
+    top: 40px;
+    bottom: 30px;
+    right: 35%;
+}
+
+.submit-cc-input{
+    float: left;
+    width: 250px;
+    position: relative;
+    top: 10px;
+    left: 25%;
+}
+
+.submit-cm-input{
+    float: right;
+    width: 250px;
+    position: relative;
+    top: 10px;
+    right: 25%;
+}
+
 
 #sidemenu{
     min-height: 100%;
@@ -367,4 +425,143 @@ body{
     box-shadow: 0px 0px 0px 3px #F60;
     -moz-box-shadow: 0px 0px 0px 3px #F60;
     -webkit-box-shadow: 0px 0px 0px 3px #F60;*/
+}
+
+/* 20160121 add */
+.imageipsn{
+    -webkit-border-top-left-radius: 20px;
+    -webkit-border-top-right-radius: 20px;
+    -webkit-border-bottom-right-radius: 20px;
+    -webkit-border-bottom-left-radius: 20px;
+    -moz-border-radius-topleft: 20px;
+    -moz-border-radius-topright: 20px;
+    -moz-border-radius-bottomright: 20px;
+    -moz-border-radius-bottomleft: 20px;
+}
+
+#imageframe{
+    -webkit-border-top-left-radius: 8px;
+    -webkit-border-top-right-radius: 8px;
+    -webkit-border-bottom-right-radius: 8px;
+    -webkit-border-bottom-left-radius: 8px;
+    -moz-border-radius-topleft: 8px;
+    -moz-border-radius-topright: 8px;
+    -moz-border-radius-bottomright: 8px;
+    -moz-border-radius-bottomleft: 8px;    
+}
+
+.labelframe{
+    -webkit-border-top-left-radius: 4px;
+    -webkit-border-top-right-radius: 4px;
+    -webkit-border-bottom-right-radius: 4px;
+    -webkit-border-bottom-left-radius: 4px;
+    -moz-border-radius-topleft: 4px;
+    -moz-border-radius-topright: 4px;
+    -moz-border-radius-bottomright: 4px;
+    -moz-border-radius-bottomleft: 4px;    
+}
+
+.gridframe{
+    -webkit-border-top-left-radius: 8px;
+    -webkit-border-top-right-radius: 8px;
+    -webkit-border-bottom-right-radius: 8px;
+    -webkit-border-bottom-left-radius: 8px;
+    -moz-border-radius-topleft: 8px;
+    -moz-border-radius-topright: 8px;
+    -moz-border-radius-bottomright: 8px;
+    -moz-border-radius-bottomleft: 8px;    
+}
+
+.gridframe:hover {
+    border: 10px solid #ff6699;
+}
+
+.userpfldetail{
+    border-collapse: collapse;
+    border: 1px solid #222;
+    font-size: 15px;
+    margin: 0 auto;
+    margin-bottom: 40px;
+}
+
+.userpfldetail-label{
+    width: 630px;
+    margin: 0 auto;
+    background-color: #222;
+    color: white;
+    margin-bottom: 8px;
+    
+    -webkit-border-top-left-radius: 5px;
+    -webkit-border-top-right-radius: 5px;
+    -webkit-border-bottom-right-radius: 5px;
+    -webkit-border-bottom-left-radius: 5px;
+    -moz-border-radius-topleft: 5px;
+    -moz-border-radius-topright: 5px;
+    -moz-border-radius-bottomright: 5px;
+    -moz-border-radius-bottomleft: 5px;
+}
+
+.userpfldetail-label p{
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+.userpfldetail tr{
+    text-align: center;
+    height: 35px;
+}
+
+.userpfldetail td{
+    border: 1px solid #222;
+}
+
+.userpfldetail-lang{
+    margin: 0 auto;
+    border: 1px solid #222;
+    width: 630px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.userpfldetail-lang tr{
+    height: 30px;
+}
+
+.userpfldetail-lang td{
+    width: 315px;
+    border: 1px solid #222;
+}
+
+.footerdiv{
+    width: 100%;
+    margin: 0 auto;
+    padding-left: 3%;
+    padding-right: 2.5%;
+}
+
+/* 管理ツール側のCSS */
+.news_table{
+    margin-top: 100px;
+    text-align: center;
+}
+
+.news_list_table{
+    border: 1px solid #222;
+}
+
+.news_list_table td{
+    border: 1px solid #222;
+    padding: 5px;
+}
+
+.inputform{
+    width: 960px;
+    float: left;
+}
+
+.company-name1{
+    float: left;
+    text-align: center;
+    padding: 10px;
+    margin: 20px 0 20px 0;
 }

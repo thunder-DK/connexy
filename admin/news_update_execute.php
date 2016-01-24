@@ -5,10 +5,10 @@
     $n_author = $_POST["n_author"];
     $n_flg = $_POST["show_flg"];
 
-    $pdo = new PDO("mysql:host=localhost;dbname=cs_academy;charset=utf8", "root", "");
-    $sql = "UPDATE news SET news_title = :n_title, news_detail = :n_detail, show_fl = :n_showfl, author = :n_author, update_date = sysdate() WHERE news_id = :n_id";
+    $pdo = new PDO("mysql:host=localhost; dbname=Connexy_DB; charset=utf8", "root", "");
+    //$pdo = new PDO("mysql:host=localhost;dbname=cs_academy;charset=utf8", "root", "");
+    $sql = "UPDATE News SET news_title = :n_title, news_detail = :n_detail, show_fl = :n_showfl, author = :n_author, update_date = sysdate() WHERE news_id = :n_id";
 
-    var_dump($sql);
     $stmt = $pdo->prepare($sql);
     $stmt->bindValue(':n_id', $n_id, PDO::PARAM_INT);
     $stmt->bindValue(':n_title', $n_title, PDO::PARAM_STR);
@@ -16,10 +16,9 @@
     $stmt->bindValue(':n_showfl', $n_flg, PDO::PARAM_INT);
     $stmt->bindValue(':n_author', $n_author, PDO::PARAM_STR);
     $result = $stmt->execute();
-    //var_dump($result);
 
     if($result == NULL){
-        echo '<table id="input_table">';
+        print '<table class="news_table">';
             print '<tr>';
                 print '<td>' ."登録に失敗しました。<br>
                               再度入力しなおして下さい。".
@@ -27,29 +26,31 @@
             print '</tr>';
 
             print '<tr>';
-                print '<td>' .'<a href="input.php">元に戻る</a></td>';
+                print '<td>' .'<a href="news_input.php">元に戻る</a></td>';
             print '</tr>';
-        echo '</table>';
+        print '</table>';
     }
     else{
         header("Location: news_list.php");
     }
-
 ?>
 
 <!DOCTYPE html>
 <html lang="ja">
     <head>
+        <meta charset="utf-8">
+        <title>管理者用–ニュース登録用</title>
+
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="../css/bootstrap.min.css">
+        <link rel="stylesheet" href="../css/style.css">
         <link rel="stylesheet" href="../css/default.css">
-        <style>
-            #input_table{
-                margin-top: 100px;
-                text-align: center;
-            }
-        </style>
+        <script type="text/javascript" src="//code.jquery.com/jquery-1.10.1.min.js"></script>
+        <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+        <link rel="shortcut icon" href="../favicon.ico">
     </head>
     <body>
-        <div id="container1">
+        <div class="container" style="width: 80%; margin: 0 auto; margin-top: 3%;">
         </div>
     </body>
 </html>

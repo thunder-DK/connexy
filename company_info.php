@@ -1,3 +1,7 @@
+<?php 
+    include "sidemenu.php";
+?>
+
 <!DOCTYPE html>
 <html lang="ja">
     <head>
@@ -10,8 +14,8 @@
         <link rel="stylesheet" href="./css/bootstrap.min.css">
         <link rel="stylesheet" href="./css/style.css">
         <script type="text/javascript" src="//code.jquery.com/jquery-1.10.1.min.js"></script>
-        <!--<script type="text/javascript" src="./js/jquery-1.2.6.min.js"></script>-->
         <script type="text/javascript" src="./js/bootstrap.min.js"></script>
+        <link rel="shortcut icon" href="./favicon.ico">
 
         <!--
         <script type="text/javascript">
@@ -41,9 +45,6 @@
     </head>
 
     <body>        
-        <?php include "sidemenu.php" ?>
-        <?php //include "header.php" ?>
-        
         <div class="sm_container">
             <!--
             <div id="slideshow" style="position: relative;">

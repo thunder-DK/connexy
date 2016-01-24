@@ -1,3 +1,7 @@
+<?php
+    include "sidemenu.php";
+?>
+
 <!DOCTYPE html>
 <html lang="ja">
     <head>
@@ -10,15 +14,13 @@
         <script type="text/javascript" src="//code.jquery.com/jquery-1.10.1.min.js"></script>        
         <link rel="stylesheet" href="./css/bootstrap.min.css">
         <link rel="stylesheet" href="./css/style.css">
+        <link rel="shortcut icon" href="./favicon.ico">
     </head>
 
     <body>
         <script type="text/javascript" src="./js/masonry.pkgd.min.js"></script>
         <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script type="text/javascript" src="./js/bootstrap.min.js"></script>
-
-        <?php //include "header.php" ?>
-        <?php include "sidemenu.php" ?>
         
         <div class="sm_container" style="margin-top: 1%; margin-left: 1%; margin-right: 1%;">
             

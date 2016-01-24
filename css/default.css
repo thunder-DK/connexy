@@ -1,8 +1,7 @@
 @charset "utf-8";
 
 body{
-    font-family:"ヒラギノ丸ゴ Pro W4","ヒラギノ丸ゴ Pro","Hiragino Maru Gothic Pro","ヒラギノ角ゴ Pro W3","ヒラギノ角ゴ Pro","Hiragino Kaku Gothic Pro",
-                        "HG丸ｺﾞｼｯｸM-PRO","HGMaruGothicMPRO","メイリオ",Meiryo,"ＭＳ Ｐゴシック","MS P Gothic",sans-serif;
+    font-family:"ヒラギノ丸ゴ Pro W4","ヒラギノ丸ゴ Pro","Hiragino Maru Gothic Pro","ヒラギノ角ゴ Pro W3","ヒラギノ角ゴ Pro","Hiragino Kaku Gothic Pro","ほのか丸ゴシック","07やさしさアンチック","HG丸ｺﾞｼｯｸM-PRO","HGMaruGothicMPRO","メイリオ",Meiryo,"ＭＳ Ｐゴシック","MS P Gothic",sans-serif;
 }
 
 /*
@@ -11,27 +10,13 @@ body{
 }
 */
 
-#inputform{
-    width: 960px;
-    float: left;
-}
+
 
 #s_inputbutton{
     float: left;
     margin: 40px;
     text-align: center;
 }
-    
-.company-name{
-    float: left;
-    text-align: center;
-}
-
-.company-name1{
-    float: left;
-    text-align: center;
-    margin: 20px 0 20px 0;
-}   
 
 #footerlogo{
     text-align: center;
@@ -60,99 +45,13 @@ body{
     right: 300px;
 }
 
-#submit-input{
-    float: left;
-    width: 150px;
-    position: relative;
-    top: 40px;
-    bottom: 30px;
-    left: 300px;
-}
-
-#submit-cancel{
-    float: right;
-    width: 150px;
-    position: relative;
-    top: 40px;
-    bottom: 30px;
-    right: 300px;
-}
-
-/*
-#news_inputfield{
-    background-color: aliceblue;
-}
-*/
-
-
-#input_table{
-    width: 50%;
-    margin: 0 auto;
-}
-
-#input_table tr{
-    height: 50px;
-}
-
-#login_g{
-    width: 600px;
-    margin: 0 auto;
-}
-
 #dltcolor{
     background-color: gainsboro;
-}
-
-#news_table{
-    width: 100%;
-    height: 100%;
-    margin: 50px 0 20px 0;
-}
-
-/*
-.register li{
-    float: right;
-    margin: 0 20px 5px 20px;
-    list-style-type: none;
-}
-
-.key-visual img{
-    padding-top: 15px;
-    min-height: 50%;
-    min-width: 1024px;
-    
-    width:100%;
-    height: 500px;
-    
-    top: 0;
-    left: 0;
-}
-*/
-
-.kagu-image{
-    margin: 0 auto;
-    text-align: center;
-    width: 1080px;
-}
-
-h2{
-    font-size: 20px;
-    text-align: center;
 }
 
 .hyouji-area{
     width: 960px;
     margin: 0 auto;
-}
-
-.purchase-btn{
-    float: right;
-}
-
-.kagu-purchase{
-    float: left;
-    margin: auto;
-    padding-right: 30px;
 }
 
 .pur-label{
